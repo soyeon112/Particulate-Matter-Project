@@ -1,6 +1,9 @@
+* {
+  font-family: "Gothic A1", sans-serif;
+}
 div.contents {
   width: 90%;
-  height: 80vh;
+  /* height: 80vh; */
   padding: 12px;
   box-sizing: border-box;
   margin: auto;

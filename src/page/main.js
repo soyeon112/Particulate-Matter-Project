@@ -8,10 +8,17 @@ const CardContents = styled.div`
   overflow: hidden;
   box-sizing: border-box;
   padding: 5px;
+  margin-bottom: 90px;
 `;
 function main() {
   return (
     <CardContents>
+      <CardCompo />
+      <CardCompo />
+      <CardCompo />
+      <CardCompo />
+      <CardCompo />
+      <CardCompo />
       <CardCompo />
       <CardCompo />
       <CardCompo />

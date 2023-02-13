@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 // 미세먼지 상황별 색상코드
 const colors = {
   매우좋음: "#71bbee",
   좋음: "a1c651",
   한때나쁨: "fdd77d",
-  나쁨: "ffca8c",
+  나쁨: "ffbf87",
   매우나쁨: "ff414d",
 };
 
@@ -16,7 +16,7 @@ const Card = styled.div`
   /* float: left; */
   width: 49%;
   height: 200px;
-  background-color: lightgray;
+  background-color: #71bbee;
   margin: 0.5%;
   padding: 15px;
   box-sizing: border-box;
@@ -34,6 +34,7 @@ const Card_Inner_Top = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  color: #fff;
 
   .icon {
     font-size: 3.5vh;
@@ -64,10 +65,14 @@ const Card_Inner_Middle = styled.div`
 const Middle_InnerText = styled.p`
   margin: 0 auto;
   width: 120px;
-  font-size: 5.5vh;
-  background-color: #fff;
+  font-size: 5.3vh;
+  padding: 5px 2px 2px;
+  background-color: rgba(255, 255, 255, 0.5);
   text-align: center;
   border-radius: 7px;
+  font-weight: 600;
+  box-sizing: border-box;
+  color: #333;
 `;
 //하단
 const Card_Inner_Bottom = styled.div`
@@ -89,7 +94,8 @@ function card() {
             <span className="dong">권선동</span>
             <span className="si">수원시</span>
           </Inner_Addr>
-          <AiFillHeart className="icon" />
+          {/* <AiFillHeart className="icon" /> --> 즐겨찾기 on */}
+          <AiOutlineHeart className="icon" />
         </Card_Inner_Top>
         <Card_Inner_Middle>
           <Middle_InnerText>좋음</Middle_InnerText>
