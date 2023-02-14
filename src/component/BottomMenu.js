@@ -6,7 +6,7 @@ import { AiFillHeart } from "react-icons/ai";
 
 const Menu_bg = styled.div`
   width: 100%;
-  height: 100px;
+  height: 110px;
   position: fixed;
   bottom: 0;
   background-color: #405e77;
@@ -33,18 +33,18 @@ const Inner = styled.div`
   .icon {
     display: block;
     margin: auto;
-    font-size: 3.5vh;
+    font-size: 2.6vw;
     margin-top: 10px;
   }
 `;
 const IconText = styled.span`
   display: inline-block;
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: 15px;
+  font-size: 1.15vw;
   font-weight: 500;
 `;
 
-function menu() {
+function BottomMenu() {
   return (
     <Menu_bg>
       <Inner>
@@ -65,4 +65,4 @@ function menu() {
   );
 }
 
-export default menu;
+export default BottomMenu;

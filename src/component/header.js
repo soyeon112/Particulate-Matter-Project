@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../static/img/logo2.png";
+import logo from "../static/img/icon.png";
 
 const Header_bg = styled.div`
   width: 100%;
@@ -9,17 +9,20 @@ const Header_bg = styled.div`
 `;
 
 const LogoImg = styled.img`
-  width: 200px;
+  /* width: 200px; */
+  width: 80px;
   display: block;
   margin: 0 auto;
 `;
 
-function header() {
+function Header() {
   return (
-    <Header_bg>
-      <LogoImg src={logo} />
-    </Header_bg>
+    <>
+      <Header_bg>
+        <LogoImg src={logo} />
+      </Header_bg>
+    </>
   );
 }
 
-export default header;
+export default Header;

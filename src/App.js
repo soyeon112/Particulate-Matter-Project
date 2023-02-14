@@ -1,16 +1,16 @@
 import "./App.css";
-import MenuCompo from "./component/menu";
-import HeaderCompo from "./component/header";
-import MainPage from "./page/main";
+import BottomMenu from "./component/BottomMenu";
+import Header from "./component/Header";
+import MainPage from "./page/Main";
 
 function App() {
   return (
     <>
-      <HeaderCompo />
+      <Header />
       <div className="contents">
         <MainPage />
       </div>
-      <MenuCompo />
+      <BottomMenu />
     </>
   );
 }

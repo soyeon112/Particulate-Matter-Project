@@ -11,11 +11,11 @@ const colors = {
   매우나쁨: "ff414d",
 };
 
-const Card = styled.div`
+const CardDiv = styled.div`
   display: inline-block;
   /* float: left; */
   width: 49%;
-  height: 200px;
+  height: 210px;
   background-color: #71bbee;
   margin: 0.5%;
   padding: 15px;
@@ -24,7 +24,7 @@ const Card = styled.div`
 
   @media only screen and (max-width: 1000px) {
     width: 100%;
-    height: 200px;
+    height: 100%;
   }
 `;
 
@@ -37,7 +37,7 @@ const Card_Inner_Top = styled.div`
   color: #fff;
 
   .icon {
-    font-size: 3.5vh;
+    font-size: 2.3vw;
     margin-top: 10px;
   }
 `;
@@ -46,11 +46,11 @@ const Inner_Addr = styled.div`
   height: auto;
 
   .dong {
-    font-size: 4vh;
+    font-size: 2.6vw;
     font-weight: bold;
   }
   .si {
-    font-size: 2.3vh;
+    font-size: 2vw;
     margin-left: 5px;
   }
 `;
@@ -65,7 +65,7 @@ const Card_Inner_Middle = styled.div`
 const Middle_InnerText = styled.p`
   margin: 0 auto;
   width: 120px;
-  font-size: 5.3vh;
+  font-size: 3.2vw;
   padding: 5px 2px 2px;
   background-color: rgba(255, 255, 255, 0.5);
   text-align: center;
@@ -82,13 +82,13 @@ const Card_Inner_Bottom = styled.div`
   margin-top: 10px;
 `;
 const Bottom_InnerText = styled.span`
-  font-size: 1.9vh;
+  font-size: 1.15vw;
 `;
 
-function card() {
+function Card() {
   return (
     <>
-      <Card>
+      <CardDiv>
         <Card_Inner_Top>
           <Inner_Addr>
             <span className="dong">권선동</span>
@@ -107,9 +107,9 @@ function card() {
           </div>
           <Bottom_InnerText>날짜</Bottom_InnerText>
         </Card_Inner_Bottom>
-      </Card>
+      </CardDiv>
     </>
   );
 }
 
-export default card;
+export default Card;
