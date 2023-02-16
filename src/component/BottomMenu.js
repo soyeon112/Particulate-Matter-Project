@@ -35,7 +35,7 @@ const Inner = styled.div`
   .icon {
     display: block;
     margin: auto;
-    font-size: 2.6vw;
+    font-size: 25px;
     margin-top: 10px;
   }
 `;
@@ -56,7 +56,7 @@ function BottomMenu() {
             <IconText>내 지역보기</IconText>
           </div>
         </Link>
-        <Link to="/main">
+        <Link to="/">
           <div className="innerIcon">
             <FaMapMarkedAlt className="icon" />
             <IconText>전체 시도보기</IconText>

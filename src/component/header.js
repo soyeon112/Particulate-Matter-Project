@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../static/img/icon.png";
 
@@ -13,13 +14,16 @@ const LogoImg = styled.img`
   width: 80px;
   display: block;
   margin: 0 auto;
+  cursor: pointer;
 `;
 
 function Header() {
   return (
     <>
       <Header_bg>
-        <LogoImg src={logo} />
+        <Link to="/">
+          <LogoImg src={logo} />
+        </Link>
       </Header_bg>
     </>
   );

@@ -12,7 +12,7 @@ function App() {
       <Header />
       <div className="contents">
         <Routes>
-          <Route path="/main" element={<MainPage />} />
+          <Route exact path="/" element={<MainPage />} />
           <Route path="/myPosition" element={<MyPosition />} />
           <Route path="/bookmark" element={<BookMark />} />
         </Routes>
