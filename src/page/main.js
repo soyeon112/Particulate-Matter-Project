@@ -23,19 +23,17 @@ const InfoText = styled.p`
 function Main() {
   const sidoPmList = useSelector((state) => state);
   let arr;
-  console.log("메인=리스트", sidoPmList.setSido.pmArr);
   arr = sidoPmList.setSido.pmArr;
-  console.log("배열길이", arr.length);
   return (
     <>
       <Dropdown />
       <CardContents>
         {arr.length != 0 ? (
-          arr.map((it) => {
-            console.log("또 콘솔", it);
+          arr.map((it, id) => {
             return (
               <>
                 <CardCompo
+                  id={id}
                   dateTime={it.dateTime}
                   grade={it.grade === null ? "알수없음" : it.grade}
                   value={it.value}

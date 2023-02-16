@@ -146,7 +146,6 @@ function DataParsing(items, dispatch) {
 function Dropdown() {
   const getSido = useSelector((state) => state);
   const selectSido = getSido.setSido.sido;
-  console.log("가져와", selectSido);
 
   useEffect(() => {
     getAPI(selectSido);

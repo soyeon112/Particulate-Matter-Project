@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 
 // 미세먼지 상황별 색상코드
 const colors = {
@@ -40,6 +41,7 @@ const Card_Inner_Top = styled.div`
 
   .icon {
     font-size: 20px;
+    cursor: pointer;
   }
 `;
 const Inner_Addr = styled.div`
@@ -96,10 +98,14 @@ const Bottom_InnerText = styled.span`
   font-weight: 500;
   margin: 0 2px;
 `;
+//하트누른 카드 정보
 
-function Card({ dateTime, grade, value, sidoName, stationName }) {
+function Card({ id, dateTime, grade, value, sidoName, stationName }) {
+  const [bookMarkState, setBookMarkState] = useState(false);
+  const dispatch = useDispatch();
+  console.log("id", id);
+
   let bgColor;
-  console.log("그레이드", typeof grade);
   switch (grade) {
     case "1":
       bgColor = colors.좋음;
@@ -126,8 +132,27 @@ function Card({ dateTime, grade, value, sidoName, stationName }) {
             <span className="dong">{stationName}</span>
             <span className="si">{sidoName}</span>
           </Inner_Addr>
-          {/* <AiFillHeart className="icon" /> --> 즐겨찾기 on */}
-          <AiOutlineHeart className="icon" />
+          {bookMarkState ? (
+            <AiFillHeart
+              className="icon"
+              onClick={() => {
+                setBookMarkState(!bookMarkState);
+                console.log("카드 아이디", stationName);
+              }}
+            />
+          ) : (
+            <AiOutlineHeart
+              className="icon"
+              onClick={() => {
+                setBookMarkState(!bookMarkState);
+                console.log("보낸다~");
+                dispatch({
+                  type: "BOOKMARK",
+                  payload: { id, stationName, sidoName, value, grade },
+                });
+              }}
+            />
+          )}
         </Card_Inner_Top>
         <Card_Inner_Middle>
           <Middle_InnerText>{grade}</Middle_InnerText>
