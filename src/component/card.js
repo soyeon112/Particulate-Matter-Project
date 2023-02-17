@@ -103,24 +103,30 @@ const Bottom_InnerText = styled.span`
 function Card({ id, dateTime, grade, value, sidoName, stationName }) {
   const [bookMarkState, setBookMarkState] = useState(false);
   const dispatch = useDispatch();
-  console.log("id", id);
 
+  //grade별 bg색상 지정
   let bgColor;
+  let gradeText;
   switch (grade) {
     case "1":
       bgColor = colors.좋음;
+      gradeText = "좋음🤗";
       break;
     case "2":
       bgColor = colors.보통;
+      gradeText = "보통🙂";
       break;
     case "3":
       bgColor = colors.나쁨;
+      gradeText = "나쁨😕";
       break;
     case "4":
       bgColor = colors.매우나쁨;
+      gradeText = "매우나쁨😣";
       break;
     default:
       bgColor = colors.알수없음;
+      gradeText = "알수없음🤔";
       break;
   }
 
@@ -137,7 +143,6 @@ function Card({ id, dateTime, grade, value, sidoName, stationName }) {
               className="icon"
               onClick={() => {
                 setBookMarkState(!bookMarkState);
-                console.log("카드 아이디", stationName);
               }}
             />
           ) : (
@@ -145,17 +150,12 @@ function Card({ id, dateTime, grade, value, sidoName, stationName }) {
               className="icon"
               onClick={() => {
                 setBookMarkState(!bookMarkState);
-                console.log("보낸다~");
-                dispatch({
-                  type: "BOOKMARK",
-                  payload: { id, stationName, sidoName, value, grade },
-                });
               }}
             />
           )}
         </Card_Inner_Top>
         <Card_Inner_Middle>
-          <Middle_InnerText>{grade}</Middle_InnerText>
+          <Middle_InnerText>{gradeText}</Middle_InnerText>
         </Card_Inner_Middle>
         <Card_Inner_Bottom>
           <div>
