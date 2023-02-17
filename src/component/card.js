@@ -98,13 +98,14 @@ const Bottom_InnerText = styled.span`
   font-weight: 500;
   margin: 0 2px;
 `;
-//하트누른 카드 정보
 
-function Card({ id, dateTime, grade, value, sidoName, stationName }) {
-  const [bookMarkState, setBookMarkState] = useState(false);
+function Card({ dateTime, grade, value, sidoName, stationName, bmState }) {
+  const [bookMarkState, setBookMarkState] = useState(bmState);
+  //🔼 즐찾 되어있는 애들은 기본값으로 true를 따라가서 이케 해놓음. false로 해두면 기본으로 채움하트가 사라져서
   const dispatch = useDispatch();
+  let bmItemObj = {}; //하트 누른 아이템 객체화
 
-  //grade별 bg색상 지정
+  //grade별 bg색상 지정 / 텍스트 저장
   let bgColor;
   let gradeText;
   switch (grade) {
@@ -143,6 +144,9 @@ function Card({ id, dateTime, grade, value, sidoName, stationName }) {
               className="icon"
               onClick={() => {
                 setBookMarkState(!bookMarkState);
+                console.log("하트해제", stationName);
+                dispatch({ type: "DELETE_BM", payload: stationName });
+                //즐찾 해제를 위해 측정소 이름을 보낸다. 그게 아이디인셈 -!
               }}
             />
           ) : (
@@ -150,6 +154,17 @@ function Card({ id, dateTime, grade, value, sidoName, stationName }) {
               className="icon"
               onClick={() => {
                 setBookMarkState(!bookMarkState);
+                console.log("하트누름", stationName);
+                bmItemObj = {
+                  station: stationName,
+                  sido: sidoName,
+                  date: dateTime,
+                  grade: grade,
+                  value: value,
+                  bookmark: true,
+                };
+                dispatch({ type: "SAVE_BM", payload: bmItemObj });
+                //즐찾을 위해 카드 생성에 필요한 데이터를 객체화 시켜 전달~
               }}
             />
           )}

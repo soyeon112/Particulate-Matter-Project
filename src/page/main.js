@@ -2,7 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
-import CardCompo from "../component/Card";
+import Card from "../component/Card";
 import Dropdown from "../component/Dropdown";
 import { useSelector } from "react-redux";
 
@@ -32,7 +32,7 @@ function Main() {
           arr.map((it, id) => {
             return (
               <>
-                <CardCompo
+                <Card
                   id={id}
                   dateTime={it.dateTime}
                   grade={it.grade === null ? "알수없음" : it.grade}

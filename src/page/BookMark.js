@@ -21,24 +21,24 @@ const InfoText = styled.p`
 `;
 function BookMark() {
   const bookmarkData = useSelector((state) => state);
-  console.log("북마크페이지", bookmarkData);
-  let aa = bookmarkData.bookmark.bookmark;
-  console.log("aa", aa);
+  console.log("북마크페이지", bookmarkData.bookmark.arrBookmark);
+  let bmList = bookmarkData.bookmark.arrBookmark;
 
   return (
     <>
       <CardContents>
-        {aa != null ? (
-          aa.map((it) => {
+        <InfoText>즐겨찾기한 지역이 없습니다.</InfoText>
+        {bmList.length >= 1 ? (
+          bmList.map((it) => {
             console.log("즐찾 측정소는?", it.station);
             return (
               <Card
-                id={it.id}
                 dateTime={it.dateTime}
                 grade={it.grade}
                 value={it.value}
                 sidoName={it.sido}
                 stationName={it.station}
+                bmState={true}
               />
             );
           })

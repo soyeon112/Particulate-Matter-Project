@@ -10,7 +10,7 @@ const Menu_bg = styled.div`
   height: 100px;
   position: fixed;
   bottom: 0;
-  background-color: #405e77;
+  background-color: #405e77; //#71BBEE 405e77
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 `;
@@ -42,7 +42,7 @@ const Inner = styled.div`
 const IconText = styled.span`
   display: inline-block;
   margin-top: 15px;
-  font-size: 1.15vw;
+  font-size: 12.5px;
   font-weight: 500;
 `;
 

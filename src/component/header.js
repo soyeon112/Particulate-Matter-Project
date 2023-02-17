@@ -6,15 +6,18 @@ import logo from "../static/img/icon.png";
 const Header_bg = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: 25px;
+  margin: 12px 0;
 `;
 
 const LogoImg = styled.img`
-  /* width: 200px; */
-  width: 80px;
+  width: 110px;
+  /* width: 80px; */
   display: block;
   margin: 0 auto;
   cursor: pointer;
+  @media only screen and (max-width: 800px) {
+    width: 90px;
+  }
 `;
 
 function Header() {
