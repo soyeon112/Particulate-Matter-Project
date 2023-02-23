@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Card from "../component/Card";
 import Dropdown from "../component/Dropdown";
 import { useSelector } from "react-redux";
+var _ = require("lodash");
 
 const CardContents = styled.div`
   overflow: hidden;
@@ -24,21 +25,39 @@ function Main() {
   const sidoPmList = useSelector((state) => state);
   let arr;
   arr = sidoPmList.setSido.pmArr;
+  console.log(arr);
+
+  let bmArr = sidoPmList.bookmark.arrBookmark;
+  console.log("메인-즐찾리스트", bmArr);
+
+  /*리덕스 북마크 리스트에서 데이터를 불러와 즐찾여부를 확인하여, 
+  있으면 true를 전달, 아니면 false를 전달. - 구현 못함. */
+  /* --테스트코드
+  let bmState;
+  let test = _.filter(bmArr, { stationName: "부산항" });
+  if (test) {
+    bmState = true;
+  } else {
+    bmState = false;
+  }
+  console.log(test);
+  */
+
   return (
     <>
       <Dropdown />
       <CardContents>
-        {arr.length != 0 ? (
-          arr.map((it, id) => {
+        {arr.length !== 0 ? (
+          arr.map((it) => {
             return (
               <>
                 <Card
-                  id={id}
                   dateTime={it.dateTime}
                   grade={it.grade === null ? "알수없음" : it.grade}
                   value={it.value}
                   sidoName={it.sidoName}
                   stationName={it.stationName}
+                  bmState={false}
                 />
               </>
             );

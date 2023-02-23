@@ -100,8 +100,10 @@ const Bottom_InnerText = styled.span`
 `;
 
 function Card({ dateTime, grade, value, sidoName, stationName, bmState }) {
+  if (!bmState) {
+    bmState = false;
+  }
   const [bookMarkState, setBookMarkState] = useState(bmState);
-  //🔼 즐찾 되어있는 애들은 기본값으로 true를 따라가서 이케 해놓음. false로 해두면 기본으로 채움하트가 사라져서
   const dispatch = useDispatch();
   let bmItemObj = {}; //하트 누른 아이템 객체화
 
@@ -145,8 +147,10 @@ function Card({ dateTime, grade, value, sidoName, stationName, bmState }) {
               onClick={() => {
                 setBookMarkState(!bookMarkState);
                 console.log("하트해제", stationName);
-                dispatch({ type: "DELETE_BM", payload: stationName });
-                //즐찾 해제를 위해 측정소 이름을 보낸다. 그게 아이디인셈 -!
+                dispatch({
+                  type: "DELETE_BM",
+                  payload: stationName, //즐찾 해제를 위해 측정소 이름을 보낸다. 그게 아이디인셈 -!
+                });
               }}
             />
           ) : (
@@ -163,8 +167,10 @@ function Card({ dateTime, grade, value, sidoName, stationName, bmState }) {
                   value: value,
                   bookmark: true,
                 };
-                dispatch({ type: "SAVE_BM", payload: bmItemObj });
-                //즐찾을 위해 카드 생성에 필요한 데이터를 객체화 시켜 전달~
+                dispatch({
+                  type: "SAVE_BM", //즐찾을 위해 카드 생성에 필요한 데이터를 객체화 시켜 전달~
+                  payload: bmItemObj,
+                });
               }}
             />
           )}

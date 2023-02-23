@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { RiMapPinUserFill } from "react-icons/ri";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
@@ -26,11 +26,11 @@ const Inner = styled.div`
   .innerIcon {
     align-self: center;
     border-radius: 7px;
-    color: #f4f5ff;
   }
   .innerIcon:hover {
+    //마우스 호버시 변경되는 컬러
     cursor: pointer;
-    color: #fee98d;
+    /* color: #fee98d; */
   }
   .icon {
     display: block;
@@ -46,28 +46,38 @@ const IconText = styled.span`
   font-weight: 500;
 `;
 
+const NavStyle = styled(NavLink)`
+  color: #f4f5ff; //기본 텍스트 컬러
+  &.active {
+    color: #f5e45f; //클릭시 변경되는 컬러
+  }
+`;
+
 function BottomMenu() {
   return (
     <Menu_bg>
       <Inner>
-        <Link to="/myPosition">
+        <NavStyle
+          to="/myPosition"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           <div className="innerIcon">
             <RiMapPinUserFill className="icon" />
             <IconText>내 지역보기</IconText>
           </div>
-        </Link>
-        <Link to="/">
+        </NavStyle>
+        <NavStyle to="/">
           <div className="innerIcon">
             <FaMapMarkedAlt className="icon" />
             <IconText>전체 시도보기</IconText>
           </div>
-        </Link>
-        <Link to="/Bookmark">
+        </NavStyle>
+        <NavStyle to="/Bookmark">
           <div className="innerIcon">
             <AiFillHeart className="icon" />
             <IconText>즐겨찾기</IconText>
           </div>
-        </Link>
+        </NavStyle>
       </Inner>
     </Menu_bg>
   );

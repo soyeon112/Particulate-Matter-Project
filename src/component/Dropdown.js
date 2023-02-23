@@ -114,7 +114,7 @@ function getAPI(sido, dispatch) {
     })
     .catch((err) => console.log(err));
 }
-//요청후 받은 데이터 배열로 저장.
+//요청후 받은 필요한 정보만 배열로 저장.
 function DataParsing(items, dispatch) {
   console.log("들어왔>?", items);
   let arr = [];
@@ -134,7 +134,6 @@ function DataParsing(items, dispatch) {
       arr.push(obj);
     });
   }
-  console.log("배열", arr);
 
   //선택된 지역의 정보를 모두 리덕스에 저장.
   dispatch({
@@ -151,9 +150,6 @@ function Dropdown() {
     getAPI(selectSido);
   }, []);
 
-  if (getSido !== undefined) {
-    console.log(getSido.setSido.sido);
-  }
   const dispatch = useDispatch();
   const [dropVisivility, setDropVisivility] = useState(false);
   let visibility = "hidden";
@@ -162,7 +158,7 @@ function Dropdown() {
     <>
       <DropMenu>
         <ChoiceTextDiv onClick={(e) => setDropVisivility(!dropVisivility)}>
-          <ChoiceText>{getSido.setSido.sido}</ChoiceText>
+          <ChoiceText>{selectSido}</ChoiceText>
           {/* 드롭 열림 닫힘 🔼, 🔽 */}
           {dropVisivility
             ? ((visibility = "visible"), (<TiArrowSortedUp className="icon" />))
@@ -177,7 +173,7 @@ function Dropdown() {
               <>
                 <Li
                   onClick={() => {
-                    dispatch({ type: "SET_SIDO", payload: it });
+                    dispatch({ type: "SET_SIDO", payload: it }); //선택된 지역 텍스트만 저장
                     setDropVisivility(!dropVisivility);
                     getAPI(it, dispatch);
                   }}

@@ -1,7 +1,8 @@
 //ducks구조로 작성
 //액션 타입을 정의
-const SET_SIDO = "setSido/SET_SIDO";
-const PM_ARR = "setSido/PM_ARR";
+const SET_SIDO = "setSido/SET_SIDO"; //드롭메뉴에서 선택된 지역의 텍스트를 저장
+const PM_ARR = "setSido/PM_ARR"; // 해당 지역의 여러 데이터중 필요한 요소만 모아서 저장. (지역, 측정소, 수치, 등급, 날짜)
+
 //액션 생성 함수
 export const settingSido = () => ({ type: SET_SIDO });
 export const pm_arr = () => ({ type: PM_ARR });
