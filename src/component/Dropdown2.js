@@ -24,8 +24,8 @@ const ChoiceTextDiv = styled.div`
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 7px;
-  color: #333;
-
+  /* color: #333; */
+  color: #405e77;
   @media (max-width: 820px) {
     width: 40%;
   }
@@ -43,9 +43,8 @@ const ChoiceTextDiv = styled.div`
 `;
 
 const ChoiceText = styled.p`
-  font-weight: bold;
+  font-family: "SoyoB";
   font-size: 18px;
-
   @media (max-width: 820px) {
     font-size: 16px;
   }
@@ -122,10 +121,9 @@ function getAPI(sido, dispatch) {
     .then((response) => response.json()) //받은 데이터 json형식으로 변환
     .then((data) => {
       /*응답받은 데이터 item만 저장 */
-      const itmes = data.response.body.items;
-      DataParsing(itmes, dispatch);
-      //11.18 ⬇️
-      // DataParsing(itmes);
+      const items = data.response.body.items;
+      DataParsing(items, dispatch);
+      console.log("??", items);
     })
     .catch((err) => console.log(err));
 }
@@ -153,7 +151,6 @@ function DataParsing(items, dispatch) {
   }
 
   //선택된 지역의 정보를 모두 리덕스에 저장.
-  //11.18 아래 코드 주석 처리함.. 선택된 지역의 정보를 왜 리덕스에 저장해야하지?
   dispatch({
     type: "PM_ARR",
     payload: arr,
@@ -173,6 +170,14 @@ function Dropdown2() {
   const [dropVisivility, setDropVisivility] = useState(false);
   let visibility = "hidden";
 
+  //도시 클릭시 실행되는 함수 (해당하는 지역의 측정소를 리스트업)
+  const cityClick = (it) => {
+    console.log("?dd");
+    dispatch({ type: "SET_SIDO", payload: it }); //선택된 지역 텍스트만 저장
+    setDropVisivility(!dropVisivility);
+    getAPI(it, dispatch);
+  };
+
   return (
     <>
       <DropMenu>
@@ -186,7 +191,7 @@ function Dropdown2() {
         </ChoiceTextDiv>
         <DropInner visibility={visibility}>
           <Ul>
-            {arr_sido.map((it) => {
+            {arr_sido.map((it, key) => {
               return (
                 <>
                   <Li

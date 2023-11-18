@@ -1,10 +1,8 @@
-* {
-  font-family: "Gothic A1", sans-serif;
+@font-face {
+  font-family: "SoyoB";
+  src: url("./static/fonts/SOYO-Maple-Bold_1.woff") format("woff");
 }
-div.contents {
-  width: 90%;
-  /* height: 80vh; */
-  padding: 12px;
-  box-sizing: border-box;
-  margin: auto;
+@font-face {
+  font-family: "SoyoR";
+  src: url("./static/fonts/SOYO-Maple-Regular_1.woff") format("woff");
 }

@@ -12,11 +12,13 @@ const MenuBg = styled.div`
   height: 13%;
   position: fixed;
   bottom: 0;
+  left: 0;
   background-color: #405e77; //#71BBEE 405e77
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   display: flex;
   align-items: center;
+  font-family: "SoyoR";
 `;
 const Inner = styled.div`
   width: 90%;
@@ -52,7 +54,7 @@ const IconText = styled.span`
 const NavStyle = styled(NavLink)`
   color: #f4f5ff; //기본 텍스트 컬러
   &.active {
-    color: #f5e45f; //클릭시 변경되는 컬러
+    color: #f6ffa6; //클릭시 변경되는 컬러
   }
 `;
 

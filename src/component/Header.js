@@ -8,7 +8,8 @@ import logo from "../static/img/icon.png";
 const HeaderBg = styled.div`
   width: 100%;
   height: auto;
-  padding: 5px 0;
+  /* padding: 5px 0; */
+  margin-top: 15px;
   box-sizing: border-box;
 `;
 

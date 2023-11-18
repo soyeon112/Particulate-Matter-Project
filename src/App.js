@@ -1,22 +1,32 @@
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BottomMenu from "./component/BottomMenu";
 import Header from "./component/Header";
 import MainPage from "./page/Main"; //지역별 메인 페이지
 import BookMark from "./page/BookMark"; //즐겨찾기 페이지
 import MyPosition from "./page/MyPosition"; //내위치 페이지
+import styled from "styled-components";
+import { Reset } from "styled-reset";
+import "./App.css";
 
+const VisibleArea = styled.div`
+  width: 90vw; //90%
+  padding: 12px;
+  box-sizing: border-box;
+  margin: auto;
+  font-family: "SoyoR";
+`;
 function App() {
   return (
     <BrowserRouter>
+      <Reset />
       <Header />
-      <div className="contents">
+      <VisibleArea>
         <Routes>
           <Route exact path="/" element={<MainPage />} />
           <Route path="/myPosition" element={<MyPosition />} />
           <Route path="/bookmark" element={<BookMark />} />
         </Routes>
-      </div>
+      </VisibleArea>
       <BottomMenu />
     </BrowserRouter>
   );

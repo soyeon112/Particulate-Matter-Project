@@ -14,12 +14,26 @@ const CardContents = styled.div`
   margin-bottom: 90px;
   margin-top: 7px;
   text-align: center;
+  @media (max-width: 1280px) {
+    //웹
+  }
+  @media (max-width: 900px) {
+    //태블릿
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  @media (max-width: 500px) {
+    //모바일
+    width: 100%;
+  }
 `;
 
 const InfoText = styled.p`
   font-size: 20px;
-  font-weight: 600;
   color: #405e77;
+  font-family: "SoyoR";
+  margin-top: 50px;
 `;
 function Main() {
   const sidoPmList = useSelector((state) => state);

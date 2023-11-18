@@ -27,9 +27,19 @@ const CardDiv = styled.div`
   box-sizing: border-box;
   border-radius: 7px;
 
-  @media only screen and (max-width: 1000px) {
+  /* @media only screen and (max-width: 1000px) {
     width: 100%;
     height: 100%;
+  } */
+  @media (max-width: 1280px) {
+    //웹
+  }
+  @media (max-width: 900px) {
+    //태블릿
+  }
+  @media (max-width: 500px) {
+    //모바일
+    width: 100%;
   }
 `;
 
@@ -52,8 +62,8 @@ const InnerTopAddr = styled.div`
 
   .dong {
     font-size: 1.5rem;
-    font-weight: bold;
-
+    font-family: "SoyoB";
+    color: #f6ffa6;
     /* @media only screen and (max-width: 800px) {
       font-size: 20px;
       font-weight: bold;
