@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 
+//측정소 별 미세먼지 카드 컴포넌트입니다.
+
 // 미세먼지 상황별 색상코드
 const colors = {
   좋음: "#71bbee",
@@ -31,7 +33,7 @@ const CardDiv = styled.div`
   }
 `;
 
-const Card_Inner_Top = styled.div`
+const InnerTop = styled.div`
   width: 100%;
   height: 35px;
   display: flex;
@@ -44,7 +46,7 @@ const Card_Inner_Top = styled.div`
     cursor: pointer;
   }
 `;
-const Inner_Addr = styled.div`
+const InnerTopAddr = styled.div`
   width: auto;
   height: auto;
 
@@ -68,13 +70,13 @@ const Inner_Addr = styled.div`
 `;
 
 //중앙
-const Card_Inner_Middle = styled.div`
+const InnerMiddle = styled.div`
   width: 100%;
   height: auto;
   margin: 15px auto;
   text-align: center;
 `;
-const Middle_InnerText = styled.span`
+const MiddleInnerText = styled.span`
   margin: 0 auto;
   display: inline-block;
   font-size: 1.6rem;
@@ -87,13 +89,13 @@ const Middle_InnerText = styled.span`
   color: #333;
 `;
 //하단
-const Card_Inner_Bottom = styled.div`
+const InnerBottom = styled.div`
   width: 100%;
   height: auto;
   text-align: center;
   margin-top: 10px;
 `;
-const Bottom_InnerText = styled.span`
+const BottomInnerText = styled.span`
   font-size: 0.9rem;
   color: #333;
   font-weight: 500;
@@ -137,11 +139,11 @@ function Card({ dateTime, grade, value, sidoName, stationName, bmState }) {
   return (
     <>
       <CardDiv bgColor={bgColor}>
-        <Card_Inner_Top>
-          <Inner_Addr>
+        <InnerTop>
+          <InnerTopAddr>
             <span className="dong">{stationName}</span>
             <span className="si">{sidoName}</span>
-          </Inner_Addr>
+          </InnerTopAddr>
           {bookMarkState ? (
             <AiFillHeart
               className="icon"
@@ -175,17 +177,17 @@ function Card({ dateTime, grade, value, sidoName, stationName, bmState }) {
               }}
             />
           )}
-        </Card_Inner_Top>
-        <Card_Inner_Middle>
-          <Middle_InnerText>{gradeText}</Middle_InnerText>
-        </Card_Inner_Middle>
-        <Card_Inner_Bottom>
+        </InnerTop>
+        <InnerMiddle>
+          <MiddleInnerText>{gradeText}</MiddleInnerText>
+        </InnerMiddle>
+        <InnerBottom>
           <div>
-            <Bottom_InnerText>미세먼지 수치 :</Bottom_InnerText>
-            <Bottom_InnerText>{value}</Bottom_InnerText>
+            <BottomInnerText>미세먼지 수치 :</BottomInnerText>
+            <BottomInnerText>{value}</BottomInnerText>
           </div>
-          <Bottom_InnerText>{dateTime}</Bottom_InnerText>
-        </Card_Inner_Bottom>
+          <BottomInnerText>{dateTime}</BottomInnerText>
+        </InnerBottom>
       </CardDiv>
     </>
   );

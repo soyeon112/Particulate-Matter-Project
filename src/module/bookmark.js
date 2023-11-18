@@ -23,11 +23,8 @@ export default function bm_reducer(state = initialState, action) {
 
   switch (action.type) {
     case "SAVE_BM":
-      console.log("여기는 save_bm");
-
       return {
         ...state,
-        //저장되어있던 배열에 추가로 push해준다.
         arrBookmark: [...state.arrBookmark, action.payload],
       };
     case "DELETE_BM":

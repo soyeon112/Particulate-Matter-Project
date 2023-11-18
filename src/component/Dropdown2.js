@@ -123,16 +123,16 @@ function getAPI(sido, dispatch) {
     .then((data) => {
       /*응답받은 데이터 item만 저장 */
       const itmes = data.response.body.items;
-      // DataParsing(itmes, dispatch);
+      DataParsing(itmes, dispatch);
       //11.18 ⬇️
-      DataParsing(itmes);
+      // DataParsing(itmes);
     })
     .catch((err) => console.log(err));
 }
 //요청후 받은 필요한 정보만 배열로 저장.
-// function DataParsing(items, dispatch) {
-//11.18 ⬇️
-function DataParsing(items) {
+function DataParsing(items, dispatch) {
+  //11.18 ⬇️
+  // function DataParsing(items) {
   console.log("들어왔>?", items);
   let arr = [];
   {
@@ -154,13 +154,13 @@ function DataParsing(items) {
 
   //선택된 지역의 정보를 모두 리덕스에 저장.
   //11.18 아래 코드 주석 처리함.. 선택된 지역의 정보를 왜 리덕스에 저장해야하지?
-  //   dispatch({
-  //     type: "PM_ARR",
-  //     payload: arr,
-  //   });
+  dispatch({
+    type: "PM_ARR",
+    payload: arr,
+  });
 }
 
-function Dropdown() {
+function Dropdown2() {
   const getSido = useSelector((state) => state);
   const selectSido = getSido.setSido.sido;
   console.log("선택한 지역", selectSido);
@@ -208,4 +208,4 @@ function Dropdown() {
   );
 }
 
-export default Dropdown;
+export default Dropdown2;

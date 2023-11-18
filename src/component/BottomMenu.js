@@ -5,7 +5,9 @@ import { RiMapPinUserFill } from "react-icons/ri";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 
-const Menu_bg = styled.div`
+//하단 메뉴 컴포넌트입니다.
+
+const MenuBg = styled.div`
   width: 100%;
   height: 13%;
   position: fixed;
@@ -56,8 +58,9 @@ const NavStyle = styled(NavLink)`
 
 function BottomMenu() {
   return (
-    <Menu_bg>
+    <MenuBg>
       <Inner>
+        {/* 
         <NavStyle
           to="/myPosition"
           className={({ isActive }) => (isActive ? "active" : "")}
@@ -67,12 +70,14 @@ function BottomMenu() {
             <IconText>내 지역보기</IconText>
           </div>
         </NavStyle>
+      */}
         <NavStyle to="/">
           <div className="innerIcon">
             <FaMapMarkedAlt className="icon" />
             <IconText>전체 시도보기</IconText>
           </div>
         </NavStyle>
+
         <NavStyle to="/Bookmark">
           <div className="innerIcon">
             <AiFillHeart className="icon" />
@@ -80,7 +85,7 @@ function BottomMenu() {
           </div>
         </NavStyle>
       </Inner>
-    </Menu_bg>
+    </MenuBg>
   );
 }
 

@@ -1,11 +1,11 @@
-// 전체 시도의 미세먼지를 필터링하여 확인할 수 있는 메인 페이지 입니다.
-
 import React from "react";
 import styled from "styled-components";
 import Card from "../component/Card";
-import Dropdown from "../component/Dropdown";
+import Dropdown from "../component/Dropdown2";
 import { useSelector } from "react-redux";
 var _ = require("lodash");
+
+// 전체 시도의 미세먼지를 필터링하여 확인할 수 있는 메인 페이지 입니다.
 
 const CardContents = styled.div`
   overflow: hidden;

@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../component/Card";
+import { get } from "lodash";
 
 const CardContents = styled.div`
   width: 100%;
@@ -28,16 +29,15 @@ const Wrap = styled.div`
   width: 100%;
   text-align: center;
 `;
+
 function BookMark() {
   const bookmarkData = useSelector((state) => state.bookmark.arrBookmark);
-  console.log(bookmarkData);
+  console.log("북마크 : ", bookmarkData);
 
-  //-- 테스트코드
-  // let test = bmList.map((it) => {
-  //   Object.values(it).find((t) => it[t] === true);
-  //   // it.filter((it) => it.BookMark === true);
-  // });
-  // console.log("test", test);
+  //로컬스토리지에 저장
+  window.localStorage.setItem("bookmark", bookmarkData);
+  const bookMark = window.localStorage.getItem("bookmark");
+  console.log("저장되나?", bookMark);
 
   return (
     <>
