@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 import styled from "styled-components";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import { useSelector, useDispatch } from "react-redux";
+
+import { useDispatch } from "react-redux";
+import { SidoAction } from "../store/setSido2";
 
 //지역 선택 드롭 메뉴 컴포넌트입니다.
 
@@ -111,78 +114,22 @@ const arr_sido = [
   "세종",
 ];
 
-/**선택한 지역의 정보를 요청 */
-function getAPI(sido, dispatch) {
-  const api_key = `CAeicSLQPuFnd8xuHRTChkOxGDaUBAmhpWqk4qBc%2F4M2aKsr5Mqv4oBMw4gryiPD9GoRl6eciPzFaIAmmJszlA%3D%3D`;
-  console.log("선택된 지역은?", sido);
-  fetch(
-    `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sido}&pageNo=1&numOfRows=100&returnType=json&serviceKey=${api_key}&ver=1.0`
-  )
-    .then((response) => response.json()) //받은 데이터 json형식으로 변환
-    .then((data) => {
-      /*응답받은 데이터 item만 저장 */
-      const items = data.response.body.items;
-      DataParsing(items, dispatch);
-      console.log("??", items);
-    })
-    .catch((err) => console.log(err));
-}
-//요청후 받은 필요한 정보만 배열로 저장.
-function DataParsing(items, dispatch) {
-  //11.18 ⬇️
-  // function DataParsing(items) {
-  console.log("들어왔>?", items);
-  let arr = [];
-  {
-    items.map((it) => {
-      const obj = {
-        /*미세먼지 등급, 수치 */
-        grade: it.pm10Grade,
-        value: it.pm10Value,
-        /*지역명 */
-        sidoName: it.sidoName,
-        /*측정소 */
-        stationName: it.stationName,
-        /*측정날짜, 시간*/
-        dateTime: it.dataTime,
-      };
-      arr.push(obj);
-    });
-  }
-
-  //선택된 지역의 정보를 모두 리덕스에 저장.
-  dispatch({
-    type: "PM_ARR",
-    payload: arr,
-  });
-}
-
-function Dropdown2() {
-  const getSido = useSelector((state) => state);
-  const selectSido = getSido.setSido.sido;
-  console.log("선택한 지역", selectSido);
-
-  useEffect(() => {
-    getAPI(selectSido);
-  }, []);
-
-  const dispatch = useDispatch();
+function Dropdown2({ sido }) {
+  console.log("sido", sido);
   const [dropVisivility, setDropVisivility] = useState(false);
   let visibility = "hidden";
 
-  //도시 클릭시 실행되는 함수 (해당하는 지역의 측정소를 리스트업)
-  const cityClick = (it) => {
-    console.log("?dd");
-    dispatch({ type: "SET_SIDO", payload: it }); //선택된 지역 텍스트만 저장
+  const dispatch = useDispatch();
+  const seletedSidoHandler = (sido) => {
+    dispatch(SidoAction.setSido(sido));
     setDropVisivility(!dropVisivility);
-    getAPI(it, dispatch);
   };
 
   return (
     <>
       <DropMenu>
         <ChoiceTextDiv onClick={(e) => setDropVisivility(!dropVisivility)}>
-          <ChoiceText>{selectSido}</ChoiceText>
+          <ChoiceText>{sido ? sido : "지역선택"}</ChoiceText>
           {/* 드롭 열림 닫힘 */}
           {dropVisivility
             ? ((visibility = "visible"), (<TiArrowSortedUp className="icon" />))
@@ -193,17 +140,14 @@ function Dropdown2() {
           <Ul>
             {arr_sido.map((it, key) => {
               return (
-                <>
-                  <Li
-                    onClick={() => {
-                      dispatch({ type: "SET_SIDO", payload: it }); //선택된 지역 텍스트만 저장
-                      setDropVisivility(!dropVisivility);
-                      getAPI(it, dispatch);
-                    }}
-                  >
-                    {it}
-                  </Li>
-                </>
+                <Li
+                  id={key}
+                  onClick={() => {
+                    seletedSidoHandler(it);
+                  }}
+                >
+                  {it}
+                </Li>
               );
             })}
           </Ul>

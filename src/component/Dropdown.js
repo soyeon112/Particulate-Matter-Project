@@ -115,9 +115,9 @@ const arr_sido = [
 /**선택한 지역의 정보를 요청 */
 function getAPI(sido, dispatch) {
   const api_key = `CAeicSLQPuFnd8xuHRTChkOxGDaUBAmhpWqk4qBc%2F4M2aKsr5Mqv4oBMw4gryiPD9GoRl6eciPzFaIAmmJszlA%3D%3D`;
-  console.log("선택된 지역은?", sido);
+  console.log("선택된 지역은?", process.env.REACT_APP_APIKEY);
   fetch(
-    `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sido}&pageNo=1&numOfRows=100&returnType=json&serviceKey=${api_key}&ver=1.0`
+    `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sido}&pageNo=1&numOfRows=100&returnType=json&serviceKey=${process.env.REACT_APP_APIKEY}&ver=1.0`
   )
     .then((response) => response.json()) //받은 데이터 json형식으로 변환
     .then((data) => {

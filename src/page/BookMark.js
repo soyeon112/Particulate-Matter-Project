@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../component/Card";
+import Card from "../component/Card/Card";
 import { get } from "lodash";
 
 const CardContents = styled.div`
@@ -31,18 +31,19 @@ const Wrap = styled.div`
 `;
 
 function BookMark() {
-  const bookmarkData = useSelector((state) => state.bookmark.arrBookmark);
+  const bookmarkData = useSelector((state) => state.bookmark.bookmark);
   console.log("북마크 : ", bookmarkData);
 
-  //로컬스토리지에 저장
-  window.localStorage.setItem("bookmark", bookmarkData);
-  const bookMark = window.localStorage.getItem("bookmark");
-  console.log("저장되나?", bookMark);
+  // //로컬스토리지에 저장
+  // window.localStorage.setItem("bookmark", bookmarkData);
+  // const bookMark = window.localStorage.getItem("bookmark");
+  // console.log("저장되나?", bookMark);
 
   return (
     <>
       <CardContents>
-        {bookmarkData.length > 0 ? (
+        <p>즐찾</p>
+        {/* {bookmarkData.length > 0 ? (
           bookmarkData.map((it) => {
             console.log(it.station);
             if (it.station !== undefined) {
@@ -64,7 +65,7 @@ function BookMark() {
           <Wrap>
             <InfoText>즐겨찾기한 지역이 없습니다.</InfoText>
           </Wrap>
-        )}
+        )} */}
       </CardContents>
     </>
   );

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 import styled from "styled-components";
-import Card from "../component/Card";
+import Card from "../component/Card/Card";
 import Dropdown from "../component/Dropdown2";
+
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
 var _ = require("lodash");
 
@@ -35,45 +39,64 @@ const InfoText = styled.p`
   font-family: "SoyoR";
   margin-top: 50px;
 `;
+
 function Main() {
-  const sidoPmList = useSelector((state) => state);
-  let arr;
-  arr = sidoPmList.setSido.pmArr;
-  console.log(arr);
+  const [getData, setGetData] = useState([]);
+  const getSido = useSelector((state) => state.sido.sido);
+  console.log("get", getSido);
+  let arr = [];
 
-  let bmArr = sidoPmList.bookmark.arrBookmark;
-  console.log("메인-즐찾리스트", bmArr);
+  //요청후 받은 필요한 정보만 배열로 저장.
+  const DataParsing = (items) => {
+    {
+      items.map((it) => {
+        const obj = {
+          /*미세먼지 등급, 수치 */
+          grade: it.pm10Grade,
+          value: it.pm10Value,
+          /*지역명 */
+          sidoName: it.sidoName,
+          /*측정소 */
+          stationName: it.stationName,
+          /*측정날짜, 시간*/
+          dateTime: it.dataTime,
+        };
+        arr.push(obj);
+      });
+    }
+    setGetData(arr);
+  };
 
-  /*리덕스 북마크 리스트에서 데이터를 불러와 즐찾여부를 확인하여, 
-  있으면 true를 전달, 아니면 false를 전달. - 구현 못함. */
-  /* --테스트코드
-  let bmState;
-  let test = _.filter(bmArr, { stationName: "부산항" });
-  if (test) {
-    bmState = true;
-  } else {
-    bmState = false;
-  }
-  console.log(test);
-  */
+  const getCityApi = async (sido) => {
+    try {
+      const res = await axios.get(
+        `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sido}&pageNo=1&numOfRows=100&returnType=json&serviceKey=${process.env.REACT_APP_APIKEY}&ver=1.0`
+      );
+      DataParsing(res.data.response.body.items);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getCityApi(getSido);
+  }, [getSido]);
 
   return (
     <>
-      <Dropdown />
+      <Dropdown sido={getSido} />
       <CardContents>
-        {arr.length !== 0 ? (
-          arr.map((it) => {
+        {getData.length > 0 ? (
+          getData.map((it, key) => {
             return (
-              <>
-                <Card
-                  dateTime={it.dateTime}
-                  grade={it.grade === null ? "알수없음" : it.grade}
-                  value={it.value}
-                  sidoName={it.sidoName}
-                  stationName={it.stationName}
-                  bmState={false}
-                />
-              </>
+              <Card
+                id={key}
+                dateTime={it.dateTime}
+                grade={it.grade === null ? "알수없음" : it.grade}
+                value={it.value}
+                sidoName={it.sidoName}
+                stationName={it.stationName}
+              />
             );
           })
         ) : (
