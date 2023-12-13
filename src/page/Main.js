@@ -43,7 +43,9 @@ const InfoText = styled.p`
 function Main() {
   const [getData, setGetData] = useState([]);
   const getSido = useSelector((state) => state.sido.sido);
+  const getbookmark = useSelector((state) => state.bookmark.bookmark);
   console.log("get", getSido);
+  console.log("getbookmark", getbookmark);
   let arr = [];
 
   //요청후 받은 필요한 정보만 배열로 저장.
