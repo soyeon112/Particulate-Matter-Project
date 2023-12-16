@@ -29,8 +29,8 @@ const ChoiceTextDiv = styled.div`
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 7px;
-  /* color: #333; */
   color: #405e77;
+  outline: 1px solid #71bbee;
   @media (max-width: 820px) {
     width: 40%;
   }
@@ -48,10 +48,9 @@ const ChoiceTextDiv = styled.div`
 `;
 
 const ChoiceText = styled.p`
-  font-family: "SoyoB";
-  font-size: 18px;
+  font-size: 1.1rem;
   @media (max-width: 820px) {
-    font-size: 16px;
+    font-size: 1rem;
   }
   @media (max-width: 500px) {
   }
@@ -68,7 +67,8 @@ const DropInner = styled.div`
   margin: 5px auto 0 auto;
   border-radius: 7px;
   visibility: ${(props) => props.visibility};
-
+  color: #405e77;
+  outline: 1px solid #71bbee;
   @media (max-width: 820px) {
     width: 40%;
   }
@@ -86,13 +86,13 @@ const Li = styled.li`
   list-style-type: none;
   padding: 10px 2px;
   border-bottom: 1px solid #eee;
-  box-sizing: border;
+  box-sizing: border-box;
   font-size: 15px;
-  font-weight: 600;
 
   :hover {
     cursor: pointer;
-    background-color: #eee;
+    color: #71bbee;
+    font-family: "SoyoB";
   }
 `;
 

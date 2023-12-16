@@ -14,8 +14,6 @@ const MenuBg = styled.div`
   bottom: 0;
   left: 0;
   background-color: #405e77; //#71BBEE 405e77
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
   display: flex;
   align-items: center;
   font-family: "SoyoR";
@@ -41,7 +39,11 @@ const Inner = styled.div`
     display: block;
     margin: auto;
     font-size: 1.5rem;
-    margin-top: 8px;
+  }
+  @media (max-width: 820px) {
+    .icon {
+      font-size: 1.2rem;
+    }
   }
 `;
 const IconText = styled.span`

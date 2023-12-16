@@ -1,27 +1,25 @@
-//즐겨찾기 페이지입니다.
-
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Card from "../component/Card/Card";
 
+//즐겨찾기 페이지입니다.
+
 const CardContents = styled.div`
   width: 100%;
   height: 100%;
-
   overflow: hidden;
   box-sizing: border-box;
   padding: 5px;
   margin-bottom: 90px;
   margin-top: 7px;
-  /* text-align: center; */
-  /* background-color: pink; */
 `;
 
 const InfoText = styled.p`
   font-size: 20px;
-  font-weight: 600;
   color: #405e77;
+  font-family: "SoyoR";
+  margin-top: 50px;
 `;
 
 const Wrap = styled.div`

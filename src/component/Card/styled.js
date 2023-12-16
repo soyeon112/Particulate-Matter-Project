@@ -2,18 +2,15 @@ import styled from "styled-components";
 
 export const CardDiv = styled.div`
   display: inline-block;
-  /* float: left; */
   width: 49%;
   height: 200px;
   background-color: ${(props) => props.bgColor};
-  /* margin: 0.5%; */
   margin: 10px 0.5%;
   padding: 15px;
   box-sizing: border-box;
   border-radius: 7px;
 
   @media (max-width: 500px) {
-    //모바일
     width: 100%;
   }
 `;
@@ -40,18 +37,10 @@ export const InnerTopAddr = styled.div`
     font-size: 1.5rem;
     font-family: "SoyoB";
     color: #f6ffa6;
-    /* @media only screen and (max-width: 800px) {
-      font-size: 20px;
-      font-weight: bold;
-    } */
   }
   .si {
     font-size: 1rem;
     margin-left: 5px;
-    /* @media only screen and (max-width: 800px) {
-      font-size: 13.5px;
-      margin-left: 5px;
-    } */
   }
 `;
 
@@ -73,6 +62,10 @@ export const MiddleInnerText = styled.span`
   font-weight: 600;
   box-sizing: border-box;
   color: #333;
+  @media (max-width: 820px) {
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
 `;
 //하단
 export const InnerBottom = styled.div`
