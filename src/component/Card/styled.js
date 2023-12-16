@@ -78,8 +78,14 @@ export const MiddleInnerText = styled.span`
 export const InnerBottom = styled.div`
   width: 100%;
   height: auto;
+  padding: 10px 0;
+  box-sizing: border-box;
   text-align: center;
   margin-top: 10px;
+
+  div {
+    margin-bottom: 3px;
+  }
 `;
 export const BottomInnerText = styled.span`
   font-size: 0.9rem;

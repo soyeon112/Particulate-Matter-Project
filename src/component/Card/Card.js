@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import {
   CardDiv,
@@ -11,7 +11,11 @@ import {
 } from "./styled";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { bookmarkAction } from "../../store/bookmark2";
+import { bookmarkAction } from "../../store/bookmark";
+import { SidoAction } from "../../store/setSido";
+
+import { get } from "lodash";
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 //측정소 별 미세먼지 카드 컴포넌트입니다.
 
 // 미세먼지 상황별 색상코드
@@ -24,25 +28,36 @@ const colors = {
   알수없음: "#ABABAB",
 };
 
-function Card({ dateTime, grade, value, sidoName, stationName }) {
-  const [bookMarkState, setBookMarkState] = useState(false);
+function Card({
+  dateTime,
+  grade,
+  value,
+  sidoName,
+  stationName,
+  bookmarkState,
+}) {
+  const [bookmark, setBookmark] = useState(bookmarkState);
+
   const dispatch = useDispatch();
 
   const addBookmarkHandler = (city) => {
+    city.bookmarkState = true;
     dispatch(bookmarkAction.addBookmark(city));
   };
   const deleteBookmarkHandler = (city) => {
+    city.bookmarkState = false;
     dispatch(bookmarkAction.deleteBookmark(city));
+    dispatch(SidoAction.deleteBookmark(city.stationName));
   };
 
   let bmItemObj = {}; //하트 누른 아이템 객체화
   bmItemObj = {
-    station: stationName,
-    sido: sidoName,
-    date: dateTime,
+    stationName: stationName,
+    sidoName: sidoName,
+    dateTime: dateTime,
     grade: grade,
     value: value,
-    bookmark: bookMarkState,
+    bookmarkState: bookmark,
   };
 
   //grade별 bg색상 지정 / 텍스트 저장
@@ -78,11 +93,11 @@ function Card({ dateTime, grade, value, sidoName, stationName }) {
           <span className="dong">{stationName}</span>
           <span className="si">{sidoName}</span>
         </InnerTopAddr>
-        {bookMarkState ? (
+        {bookmarkState ? (
           <AiFillHeart
             className="icon"
             onClick={() => {
-              setBookMarkState(!bookMarkState);
+              setBookmark(false);
               deleteBookmarkHandler(bmItemObj);
             }}
           />
@@ -90,7 +105,7 @@ function Card({ dateTime, grade, value, sidoName, stationName }) {
           <AiOutlineHeart
             className="icon"
             onClick={() => {
-              setBookMarkState(!bookMarkState);
+              setBookmark(true);
               addBookmarkHandler(bmItemObj);
             }}
           />

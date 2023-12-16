@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import setSidoReducer from "./setSido2"; //드롭메뉴 지역 클릭
-import bookmarkReducer from "./bookmark2";
+import setSidoReducer from "./setSido"; //드롭메뉴 지역 클릭
+import bookmarkReducer from "./bookmark";
 
 const store = configureStore({
   reducer: {

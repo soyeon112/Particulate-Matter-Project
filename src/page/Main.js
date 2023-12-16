@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useLayoutEffect } from "react";
 
 import styled from "styled-components";
 import Card from "../component/Card/Card";
-import Dropdown from "../component/Dropdown2";
+import Dropdown from "../component/Dropdown";
 
-import { Fragment } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { SidoAction } from "../store/setSido";
+
 var _ = require("lodash");
 
 // 전체 시도의 미세먼지를 필터링하여 확인할 수 있는 메인 페이지 입니다.
@@ -41,55 +41,29 @@ const InfoText = styled.p`
 `;
 
 function Main() {
-  const [getData, setGetData] = useState([]);
   const getSido = useSelector((state) => state.sido.sido);
-  const getbookmark = useSelector((state) => state.bookmark.bookmark);
-  console.log("get", getSido);
-  console.log("getbookmark", getbookmark);
-  let arr = [];
+  const getSidoArr = useSelector((state) => state.sido.sidoArr);
+  const getBookmark = useSelector((state) => state.bookmark.bookmark);
 
-  //요청후 받은 필요한 정보만 배열로 저장.
-  const DataParsing = (items) => {
-    {
-      items.map((it) => {
-        const obj = {
-          /*미세먼지 등급, 수치 */
-          grade: it.pm10Grade,
-          value: it.pm10Value,
-          /*지역명 */
-          sidoName: it.sidoName,
-          /*측정소 */
-          stationName: it.stationName,
-          /*측정날짜, 시간*/
-          dateTime: it.dataTime,
-        };
-        arr.push(obj);
-      });
-    }
-    setGetData(arr);
+  const dispatch = useDispatch();
+  const dispatchSaveBookmark = (station) => {
+    dispatch(SidoAction.saveBookmark(station));
   };
 
-  const getCityApi = async (sido) => {
-    try {
-      const res = await axios.get(
-        `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sido}&pageNo=1&numOfRows=100&returnType=json&serviceKey=${process.env.REACT_APP_APIKEY}&ver=1.0`
-      );
-      DataParsing(res.data.response.body.items);
-    } catch (err) {
-      console.log(err);
-    }
+  const saveBookmark = () => {
+    getBookmark.map((it) => {
+      dispatchSaveBookmark(it.stationName);
+    });
   };
-
-  useEffect(() => {
-    getCityApi(getSido);
-  }, [getSido]);
-
+  useLayoutEffect(() => {
+    saveBookmark();
+  }, [getBookmark, getSido]);
   return (
     <>
       <Dropdown sido={getSido} />
       <CardContents>
-        {getData.length > 0 ? (
-          getData.map((it, key) => {
+        {getSidoArr.length > 0 ? (
+          getSidoArr.map((it, key) => {
             return (
               <Card
                 id={key}
@@ -98,6 +72,7 @@ function Main() {
                 value={it.value}
                 sidoName={it.sidoName}
                 stationName={it.stationName}
+                bookmarkState={it.bookmark}
               />
             );
           })

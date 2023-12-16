@@ -1,10 +1,9 @@
 //즐겨찾기 페이지입니다.
 
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Card from "../component/Card/Card";
-import { get } from "lodash";
 
 const CardContents = styled.div`
   width: 100%;
@@ -32,7 +31,6 @@ const Wrap = styled.div`
 
 function BookMark() {
   const bookmarkData = useSelector((state) => state.bookmark.bookmark);
-  console.log("북마크 : ", bookmarkData);
 
   // //로컬스토리지에 저장
   // window.localStorage.setItem("bookmark", bookmarkData);
@@ -42,30 +40,24 @@ function BookMark() {
   return (
     <>
       <CardContents>
-        <p>즐찾</p>
-        {/* {bookmarkData.length > 0 ? (
+        {bookmarkData.length > 0 ? (
           bookmarkData.map((it) => {
-            console.log(it.station);
-            if (it.station !== undefined) {
-              return (
-                <>
-                  <Card
-                    dateTime={it.dateTime}
-                    grade={it.grade}
-                    value={it.value}
-                    sidoName={it.sido}
-                    stationName={it.station}
-                    bmState={true}
-                  />
-                </>
-              );
-            }
+            return (
+              <Card
+                dateTime={it.dateTime}
+                grade={it.grade}
+                value={it.value}
+                sidoName={it.sidoName}
+                stationName={it.stationName}
+                bookmarkState={true}
+              />
+            );
           })
         ) : (
           <Wrap>
             <InfoText>즐겨찾기한 지역이 없습니다.</InfoText>
           </Wrap>
-        )} */}
+        )}
       </CardContents>
     </>
   );
