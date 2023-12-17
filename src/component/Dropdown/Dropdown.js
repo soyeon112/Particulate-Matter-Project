@@ -52,7 +52,9 @@ function Dropdown({ sido }) {
       const res = await axios.get(
         `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sido}&pageNo=1&numOfRows=100&returnType=json&serviceKey=${process.env.REACT_APP_APIKEY}&ver=1.0`
       );
-      DataParsing(res.data.response.body.items, sido);
+      if (res) {
+        DataParsing(res.data.response.body.items, sido);
+      }
     } catch (err) {
       console.log(err);
     }
