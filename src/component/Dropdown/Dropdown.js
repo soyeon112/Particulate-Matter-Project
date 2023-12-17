@@ -1,100 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
-
-import styled from "styled-components";
+import {
+  DropMenu,
+  ChoiceTextDiv,
+  ChoiceText,
+  DropInner,
+  InnerWrap,
+  InnerItem,
+} from "./styled";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 
 import { useDispatch, useSelector } from "react-redux";
-import { SidoAction } from "../store/setSido";
-import { flatMap } from "lodash";
+import { SidoAction } from "../../store/setSido";
 
 //지역 선택 드롭 메뉴 컴포넌트입니다.
-
-const DropMenu = styled.div`
-  width: 100%;
-  height: 50px;
-  position: relative;
-  margin: 0 auto;
-`;
-
-const ChoiceTextDiv = styled.div`
-  width: 30%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding: 5px 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  color: #405e77;
-  outline: 1px solid #71bbee;
-  @media (max-width: 820px) {
-    width: 40%;
-  }
-  @media (max-width: 500px) {
-    width: 98%;
-  }
-
-  :hover {
-    cursor: pointer;
-  }
-
-  .icon {
-    font-size: 20px;
-  }
-`;
-
-const ChoiceText = styled.p`
-  font-size: 1.1rem;
-  @media (max-width: 820px) {
-    font-size: 1rem;
-  }
-  @media (max-width: 500px) {
-  }
-`;
-
-const DropInner = styled.div`
-  width: 30%;
-  height: 300px;
-  overflow-y: auto;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  box-sizing: border-box;
-  margin: 5px auto 0 auto;
-  border-radius: 7px;
-  visibility: ${(props) => props.visibility};
-  color: #405e77;
-  outline: 1px solid #71bbee;
-  @media (max-width: 820px) {
-    width: 40%;
-  }
-  @media (max-width: 500px) {
-    width: 98%;
-  }
-`;
-
-const Ul = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-const Li = styled.li`
-  list-style-type: none;
-  padding: 10px 2px;
-  border-bottom: 1px solid #eee;
-  box-sizing: border-box;
-  font-size: 15px;
-
-  :hover {
-    cursor: pointer;
-    color: #71bbee;
-    font-family: "SoyoB";
-  }
-`;
 
 const arr_sido = [
   "서울",
@@ -170,20 +89,20 @@ function Dropdown({ sido }) {
           : ((visibility = "hidden"), (<TiArrowSortedDown className="icon" />))}
       </ChoiceTextDiv>
       <DropInner visibility={visibility}>
-        <Ul>
+        <InnerWrap>
           {arr_sido.map((it, key) => {
             return (
-              <Li
+              <InnerItem
                 id={key}
                 onClick={() => {
                   getCityApi(it);
                 }}
               >
                 {it}
-              </Li>
+              </InnerItem>
             );
           })}
-        </Ul>
+        </InnerWrap>
       </DropInner>
     </DropMenu>
   );

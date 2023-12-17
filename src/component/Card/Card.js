@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useState } from "react";
-import styled from "styled-components";
 import {
   CardDiv,
   InnerTop,
@@ -10,12 +9,10 @@ import {
   BottomInnerText,
 } from "./styled";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { bookmarkAction } from "../../store/bookmark";
 import { SidoAction } from "../../store/setSido";
 
-import { get } from "lodash";
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 //측정소 별 미세먼지 카드 컴포넌트입니다.
 
 // 미세먼지 상황별 색상코드

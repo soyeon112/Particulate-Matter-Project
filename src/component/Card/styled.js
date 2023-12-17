@@ -5,13 +5,14 @@ export const CardDiv = styled.div`
   width: 49%;
   height: 200px;
   background-color: ${(props) => props.bgColor};
-  margin: 10px 0.5%;
+  margin: 3px;
   padding: 15px;
   box-sizing: border-box;
   border-radius: 7px;
 
   @media (max-width: 500px) {
     width: 100%;
+    margin: 1% 0;
   }
 `;
 
