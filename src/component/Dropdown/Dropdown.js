@@ -48,27 +48,24 @@ function Dropdown({ sido }) {
   };
 
   const getCityApi = async (sido) => {
+    console.log("get", sido);
     try {
       const res = await axios.get(
         `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sido}&pageNo=1&numOfRows=100&returnType=json&serviceKey=${process.env.REACT_APP_APIKEY}&ver=1.0`
       );
-      if (res) {
-        DataParsing(res.data.response.body.items, sido);
-      }
+      await DataParsing(res.data.response.body.items, sido);
     } catch (err) {
       console.log(err);
     }
   };
 
   let arr = [];
-  const getBookmark = useSelector((state) => state.bookmark.bookmark);
-
   const DataParsing = (items, sido) => {
     {
       items.map((it, key) => {
         const obj = {
-          grade: it.pm10Grade,
-          value: it.pm10Value, //미세먼지 등급, 수치
+          grade: it.pm25Grade,
+          value: it.pm25Value, //미세먼지 등급, 수치
           sidoName: it.sidoName, //지역명
           stationName: it.stationName, //측정소
           dateTime: it.dataTime, //측정날짜, 시간
@@ -79,6 +76,7 @@ function Dropdown({ sido }) {
     }
     setGetData(arr);
     seletedSidoHandler(sido, arr);
+    console.log(getData);
   };
 
   return (
