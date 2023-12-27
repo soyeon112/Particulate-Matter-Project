@@ -8,10 +8,15 @@
 
 ##### 📅 2023.02 (2023.12 리뉴얼)
 
-##### [🔗 "오늘 미세먼지 어때?" 프로젝트 보기](https://air-project-112.netlify.app)
+[🔗 페이지 이동](https://air-project-112.netlify.app)
 
 ---
 
 ### 🔧 기술 스택
 
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"/> <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"/>
+
+---
+
+| ![air_mockup_web_1920](https://github.com/soyeon112/CPP_FE_RE/assets/29302463/cb1ec9bd-c44a-4a7e-9996-503df4280524) | ![air_mockup](https://github.com/soyeon112/CPP_FE_RE/assets/29302463/1fb88489-a91d-4800-be30-9f95c05cdecc) |
+| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
